@@ -7,8 +7,8 @@ Repositori ini khusus dibuat untuk mata kuliah Praktikum Algoritma dan Pemrogram
 ├── README.md
 ├── modul-<no>
 │   ├── README.md
-|   ├── main.c
-|   ├── main.exe
+│   ├── main.c
+│   ├── main.exe
 │   └── ...
 │   ...
 ...
