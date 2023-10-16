@@ -7,7 +7,7 @@ struct Hasil
     double luaspermukaan;
 };
 
-int validasi_angka(int minimum, int maximum) // Hanya sebuah validasi angka biasa.
+int validasiAngka(int minimum, int maximum) // Hanya sebuah validasi angka biasa.
 {
     char buff[255], invalid;
     int valid;
@@ -18,11 +18,11 @@ int validasi_angka(int minimum, int maximum) // Hanya sebuah validasi angka bias
     else
     {
         printf("Input yang kamu masukkan salah!\nHarap masukkan kembali!\n>> ");
-        validasi_angka(minimum, maximum);
+        validasiAngka(minimum, maximum);
     }
 }
 
-double validasi_tabung(double minimum) // Hanya sebuah validasi angka biasa.
+double validasiDouble(double minimum) // Hanya sebuah validasi angka biasa.
 {
     char buff[255], invalid;
     double valid;
@@ -33,7 +33,7 @@ double validasi_tabung(double minimum) // Hanya sebuah validasi angka biasa.
     else
     {
         printf("Input yang kamu masukkan salah!\nHarap masukkan kembali!\n>> ");
-        validasi_tabung(minimum);
+        validasiDouble(minimum);
     }
 
 }
@@ -43,7 +43,24 @@ struct Hasil tabung(double jarijari, double tinggi)
     struct Hasil hasil;
 
     hasil.luaspermukaan = 2 * M_PI * jarijari * (jarijari + tinggi);
-    hasil.volume = 2 * M_PI * jarijari * (jarijari + tinggi);
+    hasil.volume = M_PI * pow(jarijari, 2) * tinggi;
+    return hasil;
+}
+
+struct Hasil bola(double jarijari)
+{
+    struct Hasil hasil;
+
+    hasil.luaspermukaan = (4 * M_PI * pow(jarijari, 3)) / 3;
+    hasil.volume = 4 * M_PI * pow(jarijari, 2);
+    return hasil;
+}
+
+struct Hasil kerucut(double jarijari, double tinggi, double sisimiring){
+    struct Hasil hasil;
+
+    hasil.luaspermukaan = (1 * M_PI * pow(jarijari, 2) * tinggi) / 3;
+    hasil.volume = M_PI * jarijari * (jarijari + sisimiring);
     return hasil;
 }
 
@@ -51,7 +68,7 @@ int main()
 {
     int program;
     struct Hasil hasil;
-    double jarijari, tinggi;
+    double jarijari, tinggi, sisimiring;
 
     // Input Operator
     printf("\n");
@@ -59,19 +76,52 @@ int main()
     printf("Pilih Program (1-5) : \n");
     printf("\n 1. Tabung\n 2. Bola\n 3. limas Segiempat\n 4. Prisma Segitiga\n 5. Kerucut\n");
     printf("\n\nPilihan mu: ");
-    program = validasi_angka(1,5);
-    switch (program) //  Memilih operator dalam list
+    program = validasiAngka(1,5);
+
+    switch (program) // Memilih operator dalam list
     {
     case 1: // Tabung //Punya Linda
 
         printf("Masukan Jari_Jari Tabung: ");
-        jarijari= validasi_tabung(0);
+        jarijari = validasiDouble(0);
         printf("Masukan Tinggi Tabung: ");
-        tinggi = validasi_tabung(0);
+        tinggi = validasiDouble(0);
+
         hasil = tabung(jarijari, tinggi);
+
         // menampilkan hasil
         printf("Volume Tabung : %lf\n", hasil.volume);
         printf("Luas Permukaan Tabung : %lf\n", hasil.luaspermukaan);
+        break;
+
+    case 2: // Bola
+
+        printf("Masukan Jari_Jari Bola: ");
+        jarijari = validasiDouble(0);
+        hasil = bola(jarijari);
+
+        // menampilkan hasil
+        printf("Volume Bola : %lf\n", hasil.volume);
+        printf("Luas Permukaan Bola : %lf\n", hasil.luaspermukaan);
+        break;
+
+    case 3: //
+        break;
+
+    case 4: //
+        break;
+
+    case 5: //
+        printf("Masukkan nilai jari-jari: ");
+        jarijari = validasiDouble(0);
+        printf("Masukkan nilai tinggi: ");
+        tinggi = validasiDouble(0);
+        printf("Masukkan nilai sisi miring: ");
+        sisimiring = validasiDouble(0);
+
+    
+        printf("Volume kerucut= %lf\n", hasil.volume);
+        printf("Luas permukaan kerucut= %lf\n", hasil.luaspermukaan);
         break;
     }
     return 0;
