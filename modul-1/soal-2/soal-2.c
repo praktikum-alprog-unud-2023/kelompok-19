@@ -81,24 +81,17 @@ void hitungLuasDanKelilingJajarGenjang(double alas, double tinggi, double sisi)
 }
 
 // Deklrasi Prosedur Trapesium
-void hitungLuasKeliling(float alas, float atas, float tinggi, float *luas, float *keliling)
+void hitungLuasDanKelilingTrapesium(double alas1, double alas2, double tinggiT, double sisi1, double sisi2)
 {
-    *luas = 0.5 * (alas + atas) * tinggi;
-    *keliling = alas + atas + 2 * tinggi;
+    double luas, keliling;
+
+    luas = 0.5 * (alas1 + alas2) * tinggiT;
+    keliling = sisi1 + sisi2 + alas1 + alas2;
+
+    printf("Luas Trapesium: %.2lf\n", luas);
+    printf("Keliling Trapesium: %.2lf\n", keliling);
 }
 
-// Fungsi untuk memvalidasi input Trapesium
-// int isValidNumber(char *input)
-// {
-//     for (int i = 0; input[i] != '\0'; i++)
-//     {
-//         if (!isdigit(input[i]) && input[i] != '.')
-//         {
-//             return 0;
-//         }
-//     }
-//     return 1;
-// }
 // Deklarasi Prosedur Lingkaran
 void hitungLuasDanKelilingLingkaran(double radius, double *luas, double *keliling)
 {
@@ -111,10 +104,9 @@ int main()
 {
     int program;                                            // "Int" untuk memilih operator dalam switch
     double SisiA, SisiB, SisiC, Diagonal1, Diagonal2, sisi; // Punya SegitigaSembarang dan Belah Ketupat
-    char buffer[100];                                       // Punya Trapesium
-    float alas, atas, tinggi, luas, keliling;               // Punya Trapesium
+    double alas1, alas2, tinggiT, sisi1, sisi2;             // Punya Trapesium
     double radius, luaslingkaran, kelilinglingkaran;        // Punya Lingkaran
-    double alasJ, tinggiJ, sisiJ;
+    double alasJ, tinggiJ, sisiJ;                           // Punya Jajargenjang
 
     // Input Operator
     printf("\n");
@@ -161,75 +153,23 @@ int main()
         break;
 
     case 4: // Trapesium //Punya Gusde
-        // do
-        // {
-        //     printf("Masukkan panjang alas trapesium: ");
-        //     scanf("%s", buffer);
-        //     if (isValidNumber(buffer))
-        //     {
-        //         alas = atof(buffer);
-        //         if (alas <= 0)
-        //         {
-        //             printf("Panjang alas harus positif. Silakan masukkan nilai positif.\n");
-        //             continue;
-        //         }
-        //     }
-        //     else
-        //     {
-        //         printf("Masukkan tidak valid. Harus berupa angka positif.\n");
-        //         continue;
-        //     }
-        //     break;
-        // } while (1);
+        printf("Masukkan panjang alas atas trapesium: ");
+        alas1 = validasiDouble(0);
 
-        // do
-        // {
-        //     printf("Masukkan panjang atas trapesium: ");
-        //     scanf("%s", buffer);
-        //     if (isValidNumber(buffer))
-        //     {
-        //         atas = atof(buffer);
-        //         if (atas <= 0)
-        //         {
-        //             printf("Panjang atas harus positif. Silakan masukkan nilai positif.\n");
-        //             continue;
-        //         }
-        //     }
-        //     else
-        //     {
-        //         printf("Masukkan tidak valid. Harus berupa angka positif.\n");
-        //         continue;
-        //     }
-        //     break;
-        // } while (1);
+        printf("Masukkan panjang alas bawah trapesium: ");
+        alas2 = validasiDouble(0);
 
-        // do
-        // {
-        //     printf("Masukkan tinggi trapesium: ");
-        //     scanf("%s", buffer);
-        //     if (isValidNumber(buffer))
-        //     {
-        //         tinggi = atof(buffer);
-        //         if (tinggi <= 0)
-        //         {
-        //             printf("Tinggi harus positif. Silakan masukkan nilai positif.\n");
-        //             continue;
-        //         }
-        //     }
-        //     else
-        //     {
-        //         printf("Masukkan tidak valid. Harus berupa angka positif.\n");
-        //         continue;
-        //     }
-        //     break;
-        // } while (1);
+        printf("Masukkan tinggi trapesium: ");
+        tinggiT = validasiDouble(0);
 
-        // // Memanggil prosedur untuk menghitung luas dan keliling
-        // hitungLuasKeliling(alas, atas, tinggi, &luas, &keliling);
+        printf("Masukkan panjang sisi sejajar trapesium (sisi1): ");
+        sisi1 = validasiDouble(0);
 
-        // // Menampilkan hasil perhitungan
-        // printf("Luas trapesium: %.2f\n", luas);
-        // printf("Keliling trapesium: %.2f\n", keliling);
+        printf("Masukkan panjang sisi sejajar trapesium (sisi2): ");
+        sisi2 = validasiDouble(0);
+
+        // Memanggil prosedur untuk menghitung luas dan keliling trapesium
+        hitungLuasDanKelilingTrapesium(alas1, alas2, tinggiT, sisi1, sisi2);
         break;
 
     case 5: // Lingkaran //Punya Dea
