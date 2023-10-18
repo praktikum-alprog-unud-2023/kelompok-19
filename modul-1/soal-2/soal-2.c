@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-int validasi_angka(int minimum, int maximum) // Hanya sebuah validasi angka biasa.
+int numberValidation(int minimum, int maximum) // Number Validation.
 {
     char buff[255], invalid;
     int valid;
@@ -13,12 +13,12 @@ int validasi_angka(int minimum, int maximum) // Hanya sebuah validasi angka bias
         return valid;
     else
     {
-        printf("Input yang kamu masukkan salah!\nHarap masukkan kembali!\n>> ");
-        validasi_angka(minimum, maximum);
+        printf("The input you entered is wrong!\nPlease re-enter!\n>> ");
+        numberValidation(minimum, maximum);
     }
 }
 
-double validasi_tabung(double minimum) // Hanya sebuah validasi angka biasa.
+double doubleValidation(double minimum) // Number Validation.
 {
     char buff[255], invalid;
     double valid;
@@ -28,68 +28,55 @@ double validasi_tabung(double minimum) // Hanya sebuah validasi angka biasa.
         return valid;
     else
     {
-        printf("Input yang kamu masukkan salah!\nHarap masukkan kembali!\n>> ");
-        validasi_tabung(minimum);
+        printf("The input you entered is wrong!\nPlease re-enter!\n>> ");
+        doubleValidation(minimum);
     }
 }
-double validasiDouble(double minimum) // Hanya sebuah validasi angka biasa.
+
+// Declare Triange Procedure
+void calculateAreaAndCircumferenceOfTriangle(double sideA, double sideB, double sideC)
 {
-    char buff[255], invalid;
-    double valid;
-    scanf("%[^\n]", buff);
-    getchar();
-    if (sscanf(buff, "%lf%c", &valid, invalid) == 1 && valid >= minimum)
-        return valid;
-    else
-    {
-        printf("Input yang kamu masukkan salah!\nHarap masukkan kembali!\n>> ");
-        validasiDouble(minimum);
-    }
-}
-// Deklarasi prosedur Segitiga Sembarang
-void Luas_Keliling_SegitigaSembarang(double SisiA, double SisiB, double SisiC)
-{
-    double s = (SisiA + SisiB + SisiC) / 2;                          // menghitung setengah keliling
-    double luas = sqrt(s * (s - SisiA) * (s - SisiB) * (s - SisiC)); // proses rumus heron
-    double keliling = SisiA + SisiB + SisiC;                         // proses
+    double s = (sideA + sideB + sideC) / 2;                          // calculate half the circumference
+    double area = sqrt(s * (s - sideA) * (s - sideB) * (s - sideC)); // Heron's formula process
+    double circumference = sideA + sideB + sideC;                    // Process
 
     printf("\n");
-    printf("Luas Segitiga Sembarang : %.lf\n", luas);         // Proses Rumus
-    printf("Keliling segitiga sembarang : %.lf\n", keliling); // Proses Rumus
+    printf("Area of Triangle : %.lf\n", area);                   // Formula process
+    printf("Circumference of Triangle : %.lf\n", circumference); // Formula process
 }
 
-// Deklrasi prosedur Belah Ketupat
-void Luas_Keliling_BelahKetupat(double Diagonal1, double Diagonal2, double sisi)
+// Declare Rhombus Procedure
+void calculateAreaAndCircumferenceOfRhombus(double Diagonal1, double Diagonal2, double side)
 {
-    double luas = (Diagonal1 * Diagonal2) / 2;
-    double keliling = 4 * sisi;
+    double area = (Diagonal1 * Diagonal2) / 2;
+    double circumference = 4 * side;
 
     printf("\n");
-    printf("Luas Belah Ketupat : %.lf\n", luas);         // Proses
-    printf("Keliling Belah Ketupat : %.lf\n", keliling); // Proses
+    printf("Area of Rhombus : %.lf\n", area);                   // Process
+    printf("Circumference of Rhombus : %.lf\n", circumference); // Process
 }
 // Deklarasi Prosedur Jajargenjang
 void hitungLuasDanKelilingJajarGenjang(double alas, double tinggi, double sisi)
 {
-    double luas, keliling;
+    double area, circumference;
 
-    luas = alas * tinggi;
-    keliling = 2 * (alas + sisi);
+    area = alas * tinggi;
+    circumference = 2 * (alas + sisi);
 
-    printf("Luas jajar genjang: %.2lf\n", luas);
-    printf("Keliling jajar genjang: %.2lf\n", keliling);
+    printf("Luas jajar genjang: %.2lf\n", area);
+    printf("Keliling jajar genjang: %.2lf\n", circumference);
 }
 
 // Deklrasi Prosedur Trapesium
 void hitungLuasDanKelilingTrapesium(double alas1, double alas2, double tinggiT, double sisi1, double sisi2)
 {
-    double luas, keliling;
+    double area, circumference;
 
-    luas = 0.5 * (alas1 + alas2) * tinggiT;
-    keliling = sisi1 + sisi2 + alas1 + alas2;
+    area = 0.5 * (alas1 + alas2) * tinggiT;
+    circumference = sisi1 + sisi2 + alas1 + alas2;
 
-    printf("Luas Trapesium: %.2lf\n", luas);
-    printf("Keliling Trapesium: %.2lf\n", keliling);
+    printf("Luas Trapesium: %.2lf\n", area);
+    printf("Keliling Trapesium: %.2lf\n", circumference);
 }
 
 // Declare Circle Procedure
@@ -103,50 +90,50 @@ void calculateAreaAndCircumferenceOfCircle(double radius, double *area, double *
 int main()
 {
     int program;                                            // "Int" untuk memilih operator dalam switch
-    double SisiA, SisiB, SisiC, Diagonal1, Diagonal2, sisi; // Punya SegitigaSembarang dan Belah Ketupat
+    double sideA, sideB, sideC, Diagonal1, Diagonal2, side; // Triangle's and Rhombus
     double alas1, alas2, tinggiT, sisi1, sisi2;             // Punya Trapesium
     double radius, areaOfCircle, circumferenceOfCircle;     // Circle's
     double alasJ, tinggiJ, sisiJ;                           // Punya Jajargenjang
 
     // Input Operator
     printf("\n");
-    printf("\t\t\t\tProgram Menghitung Luas dan Keliling Bangun Datar\n");
-    printf("Pilih Program (1-5) : \n");
-    printf("\n 1. Segitiga Sembarang\n 2. Belah Ketupat\n 3. Jajargenjang\n 4. Trapesium\n 5. Lingkaran\n");
-    printf("\n\nPilihan mu: ");
-    program = validasi_angka(1, 5);
+    printf("\t\t\t\tProgram to Calculate Area and Circumference of Two-Dimentional Figure\n");
+    printf("Choose Program (1-5) : \n");
+    printf("\n 1. Triangle\n 2. Rhombus\n 3. Jajargenjang\n 4. Trapesium\n 5. Circle\n");
+    printf("\n\nYour Choice: ");
+    program = numberValidation(1, 5);
 
-    switch (program) // Memilih operator dalam list
+    switch (program) // Choose operator on list
     {
-    case 1: // Segitiga Sembarang //Punya Nata
-        printf("Input sisi A: ");
-        SisiA = validasiDouble(0);
-        printf("Input sisi B: ");
-        SisiB = validasiDouble(0);
-        printf("Input sisi C: ");
-        SisiC = validasiDouble(0);
+    case 1: // Triangle //Nata's
+        printf("Input side A: ");
+        sideA = doubleValidation(0);
+        printf("Input side B: ");
+        sideB = doubleValidation(0);
+        printf("Input side C: ");
+        sideC = doubleValidation(0);
 
-        Luas_Keliling_SegitigaSembarang(SisiA, SisiB, SisiC); // memanggil prosedur
+        calculateAreaAndCircumferenceOfTriangle(sideA, sideB, sideC); // Calling procedure
         break;
 
-    case 2: // Belah Ketupat // Punya Nata
-        printf("Input Panjang Diagonal 1: ");
-        Diagonal1 = validasiDouble(0);
-        printf("Input Panjang Diagonal 2: ");
-        Diagonal2 = validasiDouble(0);
-        printf("Input Panjang Sisi: ");
-        sisi = validasiDouble(0);
+    case 2: // Rhombus // Nata's
+        printf("Input lenght of Diagonal 1: ");
+        Diagonal1 = doubleValidation(0);
+        printf("Input lenght of Diagonal 2: ");
+        Diagonal2 = doubleValidation(0);
+        printf("Input lenght of side: ");
+        side = doubleValidation(0);
 
-        Luas_Keliling_BelahKetupat(Diagonal1, Diagonal2, sisi); // memanggil prosedur
+        calculateAreaAndCircumferenceOfRhombus(Diagonal1, Diagonal2, side); // Calling procedure
         break;
 
     case 3: // Jajargenjang //Punya Dea
         printf("Masukkan panjang alas: ");
-        alasJ = validasiDouble(0);
+        alasJ = doubleValidation(0);
         printf("Masukkan tinggi: ");
-        tinggiJ = validasiDouble(0);
+        tinggiJ = doubleValidation(0);
         printf("Masukkan panjang sisi: ");
-        sisiJ = validasiDouble(0);
+        sisiJ = doubleValidation(0);
 
         // Memanggil prosedur untuk menghitung luas dan keliling jajar genjang
         hitungLuasDanKelilingJajarGenjang(alasJ, tinggiJ, sisiJ);
@@ -154,19 +141,19 @@ int main()
 
     case 4: // Trapesium //Punya Gusde
         printf("Masukkan panjang alas atas trapesium: ");
-        alas1 = validasiDouble(0);
+        alas1 = doubleValidation(0);
 
         printf("Masukkan panjang alas bawah trapesium: ");
-        alas2 = validasiDouble(0);
+        alas2 = doubleValidation(0);
 
         printf("Masukkan tinggi trapesium: ");
-        tinggiT = validasiDouble(0);
+        tinggiT = doubleValidation(0);
 
         printf("Masukkan panjang sisi sejajar trapesium (sisi1): ");
-        sisi1 = validasiDouble(0);
+        sisi1 = doubleValidation(0);
 
         printf("Masukkan panjang sisi sejajar trapesium (sisi2): ");
-        sisi2 = validasiDouble(0);
+        sisi2 = doubleValidation(0);
 
         // Memanggil prosedur untuk menghitung luas dan keliling trapesium
         hitungLuasDanKelilingTrapesium(alas1, alas2, tinggiT, sisi1, sisi2);
@@ -174,7 +161,7 @@ int main()
 
     case 5: // Circle // Dea's
         printf("Enter The Radius of Circle: ");
-        radius = validasiDouble(0);
+        radius = doubleValidation(0);
 
         // Calls procedures to calculate area and circumference of circle
         calculateAreaAndCircumferenceOfCircle(radius, &areaOfCircle, &circumferenceOfCircle);
