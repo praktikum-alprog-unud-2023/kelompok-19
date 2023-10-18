@@ -92,12 +92,12 @@ void hitungLuasDanKelilingTrapesium(double alas1, double alas2, double tinggiT, 
     printf("Keliling Trapesium: %.2lf\n", keliling);
 }
 
-// Deklarasi Prosedur Lingkaran
-void hitungLuasDanKelilingLingkaran(double radius, double *luas, double *keliling)
+// Declare Circle Procedure
+void calculateAreaAndCircumferenceOfCircle(double radius, double *area, double *circumference)
 {
     const double PI = 3.14159265359;
-    *luas = PI * pow(radius, 2);
-    *keliling = 2 * PI * radius;
+    *area = PI * pow(radius, 2);
+    *circumference = 2 * PI * radius;
 }
 
 int main()
@@ -105,7 +105,7 @@ int main()
     int program;                                            // "Int" untuk memilih operator dalam switch
     double SisiA, SisiB, SisiC, Diagonal1, Diagonal2, sisi; // Punya SegitigaSembarang dan Belah Ketupat
     double alas1, alas2, tinggiT, sisi1, sisi2;             // Punya Trapesium
-    double radius, luaslingkaran, kelilinglingkaran;        // Punya Lingkaran
+    double radius, areaOfCircle, circumferenceOfCircle;     // Circle's
     double alasJ, tinggiJ, sisiJ;                           // Punya Jajargenjang
 
     // Input Operator
@@ -172,15 +172,15 @@ int main()
         hitungLuasDanKelilingTrapesium(alas1, alas2, tinggiT, sisi1, sisi2);
         break;
 
-    case 5: // Lingkaran //Punya Dea
-        printf("Masukkan jari-jari lingkaran: ");
+    case 5: // Circle // Dea's
+        printf("Enter The Radius of Circle: ");
         radius = validasiDouble(0);
 
-        // Memanggil prosedur untuk menghitung luas dan keliling
-        hitungLuasDanKelilingLingkaran(radius, &luaslingkaran, &kelilinglingkaran);
+        // Calls procedures to calculate area and circumference of circle
+        calculateAreaAndCircumferenceOfCircle(radius, &areaOfCircle, &circumferenceOfCircle);
 
-        printf("Luas lingkaran: %lf\n", luaslingkaran);
-        printf("Keliling lingkaran: %lf\n", kelilinglingkaran);
+        printf("Area Of Circle: %lf\n", areaOfCircle);
+        printf("Circumference of Circle: %lf\n", circumferenceOfCircle);
         break;
 
     default: // Validasi
