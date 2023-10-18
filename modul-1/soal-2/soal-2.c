@@ -46,9 +46,9 @@ void calculateAreaAndCircumferenceOfTriangle(double sideA, double sideB, double 
 }
 
 // Declare Rhombus Procedure
-void calculateAreaAndCircumferenceOfRhombus(double Diagonal1, double Diagonal2, double side)
+void calculateAreaAndCircumferenceOfRhombus(double diagonal1, double diagonal2, double side)
 {
-    double area = (Diagonal1 * Diagonal2) / 2;
+    double area = (diagonal1 * diagonal2) / 2;
     double circumference = 4 * side;
 
     printf("\n");
@@ -90,7 +90,7 @@ void calculateAreaAndCircumferenceOfCircle(double radius, double *area, double *
 int main()
 {
     int program;                                            // "Int" untuk memilih operator dalam switch
-    double sideA, sideB, sideC, Diagonal1, Diagonal2, side; // Triangle's and Rhombus
+    double sideA, sideB, sideC, diagonal1, diagonal2, side; // Triangle's and Rhombus
     double alas1, alas2, tinggiT, sisi1, sisi2;             // Punya Trapesium
     double radius, areaOfCircle, circumferenceOfCircle;     // Circle's
     double alasJ, tinggiJ, sisiJ;                           // Punya Jajargenjang
@@ -118,13 +118,13 @@ int main()
 
     case 2: // Rhombus // Nata's
         printf("Input lenght of Diagonal 1: ");
-        Diagonal1 = doubleValidation(0);
+        diagonal1 = doubleValidation(0);
         printf("Input lenght of Diagonal 2: ");
-        Diagonal2 = doubleValidation(0);
+        diagonal2 = doubleValidation(0);
         printf("Input lenght of side: ");
         side = doubleValidation(0);
 
-        calculateAreaAndCircumferenceOfRhombus(Diagonal1, Diagonal2, side); // Calling procedure
+        calculateAreaAndCircumferenceOfRhombus(diagonal1, diagonal2, side); // Calling procedure
         break;
 
     case 3: // Jajargenjang //Punya Dea
