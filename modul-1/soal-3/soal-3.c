@@ -82,10 +82,10 @@ int main()
         program = numValidate(1, 5);
 
         switch (program) {
-            case 1: // Tabung //Punya Linda
+            case 1: // Tube //Punya Linda
 
                 printf("Input the radius of tube: ");
-                radius = validasiDouble(0);
+                radius = doubleValidation(0);
                 printf("Input the height of tube: ");
                 height = doubleValidation(0);
         
