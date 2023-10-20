@@ -19,7 +19,7 @@ int numValidate(int minimum, int maximum)
             return valid;
         else
         {
-            printf("The input you entered is wrong!\nPlease re-enter: ");
+            printf("The input you entered is wrong!\nPlease re-enter(1-5): ");
         }
     } while (1);
 }
@@ -69,7 +69,6 @@ struct outcome cone(double radius, double height, double slant){
 int main()
 {
     int program;
-    int backTostart = 1;
     struct outcome result;
     double radius, height, slant;
     
