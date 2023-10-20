@@ -1,128 +1,133 @@
 #include <stdio.h>
 #include <math.h>
 #define M_PI 3.14159265358979323846
-struct Hasil
+
+struct outcome
 {
     double volume;
-    double luaspermukaan;
+    double surfaceArea;
 };
 
-int validasiAngka(int minimum, int maximum) // Hanya sebuah validasi angka biasa.
+int numValidate(int minimum, int maximum)
 {
     char buff[255], invalid;
     int valid;
-    scanf("%[^\n]", buff);
-    getchar();
-    if (sscanf(buff, "%d%c", &valid, invalid) == 1 && valid >= minimum && valid <= maximum)
-        return valid;
-    else
-    {
-        printf("Input yang kamu masukkan salah!\nHarap masukkan kembali!\n>> ");
-        validasiAngka(minimum, maximum);
-    }
+    do {
+        scanf("%[^\n]", buff);
+        getchar();
+        if (sscanf(buff, "%d%c", &valid, &invalid) == 1 && valid >= minimum && valid <= maximum)
+            return valid;
+        else
+        {
+            printf("The input you entered is wrong!\nPlease re-enter(1-5): ");
+        }
+    } while (1);
 }
 
-double validasiDouble(double minimum) // Hanya sebuah validasi angka biasa.
+double doubleValidate(double minimum)
 {
     char buff[255], invalid;
     double valid;
-    scanf("%[^\n]", buff);
-    getchar();
-    if (sscanf(buff, "%lf%c", &valid, invalid) == 1 && valid >= minimum)
-        return valid;
-    else
-    {
-        printf("Input yang kamu masukkan salah!\nHarap masukkan kembali!\n>> ");
-        validasiDouble(minimum);
-    }
-
+    do {
+        scanf("%[^\n]", buff);
+        getchar();
+        if (sscanf(buff, "%lf%c", &valid, &invalid) == 1 && valid >= minimum)
+            return valid;
+        else
+        {
+            printf("The input you entered is wrong!\nPlease re-enter(1-5): ");
+        }
+    } while (1);
 }
 
-struct Hasil tabung(double jarijari, double tinggi)
+struct outcome tube(double radius, double height)
 {
-    struct Hasil hasil;
+    struct outcome result;
 
-    hasil.luaspermukaan = 2 * M_PI * jarijari * (jarijari + tinggi);
-    hasil.volume = M_PI * pow(jarijari, 2) * tinggi;
-    return hasil;
+    result.surfaceArea = 2 * M_PI * radius * (radius + height);
+    result.volume = M_PI * pow(radius, 2) * height;
+    return result;
 }
 
-struct Hasil bola(double jarijari)
+struct outcome sphere(double radius)
 {
-    struct Hasil hasil;
+    struct outcome result;
 
-    hasil.luaspermukaan = (4 * M_PI * pow(jarijari, 3)) / 3;
-    hasil.volume = 4 * M_PI * pow(jarijari, 2);
-    return hasil;
+    result.surfaceArea = (4 * M_PI * pow(radius, 3)) / 3;
+    result.volume = 4 * M_PI * pow(radius, 2);
+    return result;
 }
 
-struct Hasil kerucut(double jarijari, double tinggi, double sisimiring){
-    struct Hasil hasil;
+struct outcome cone(double radius, double height, double slant){
+    struct outcome result;
 
-    hasil.luaspermukaan = (1 * M_PI * pow(jarijari, 2) * tinggi) / 3;
-    hasil.volume = M_PI * jarijari * (jarijari + sisimiring);
-    return hasil;
+    result.surfaceArea = (1 * M_PI * pow(radius, 2) * height) / 3;
+    result.volume = M_PI * radius * (radius + slant);
+    return result;
 }
 
 int main()
 {
     int program;
-    struct Hasil hasil;
-    double jarijari, tinggi, sisimiring;
+    struct outcome result;
+    double radius, height, slant;
 
-    // Input Operator
-    printf("\n");
-    printf("\t\t\t\tProgram Menghitung Volume dan luas permukaan bangun ruang\n");
-    printf("Pilih Program (1-5) : \n");
-    printf("\n 1. Tabung\n 2. Bola\n 3. limas Segiempat\n 4. Prisma Segitiga\n 5. Kerucut\n");
-    printf("\n\nPilihan mu: ");
-    program = validasiAngka(1,5);
+    while (1) {
+        // Input Operator
+        printf("\n");
+        printf("\t\t\t\tThree-Dimensional Shapes' Volume and Surface Area Calculation Program\n");
+        printf("Choose a program (1-5) : \n");
+        printf("\n 1. Tube\n 2. Sphere\n 3. Rectangular Pyramid\n 4. Triangular Prism\n 5. Cone\n");
+        printf("\nYour Choice: ");
+        program = numValidate(1, 5);
 
-    switch (program) // Memilih operator dalam list
-    {
-    case 1: // Tabung //Punya Linda
+        switch (program) {
+            case 1: // Tabung
+                printf("Input the radius of the tube: ");
+                radius = doubleValidate(0);
+                printf("Input the height of the tube: ");
+                height = doubleValidate(0);
+                result = tube(radius, height);
+                printf("Volume of the tube : %lf\n", result.volume);
+                printf("Surface area of the tube : %lf\n", result.surfaceArea);
+                break;
 
-        printf("Masukan Jari_Jari Tabung: ");
-        jarijari = validasiDouble(0);
-        printf("Masukan Tinggi Tabung: ");
-        tinggi = validasiDouble(0);
+            case 2: // Bola
+                printf("Input the radius of the sphere: ");
+                radius = doubleValidate(0);
+                result = sphere(radius);
+                printf("Volume of the sphere : %lf\n", result.volume);
+                printf("Surface area of the sphere : %lf\n", result.surfaceArea);
+                break;
 
-        hasil = tabung(jarijari, tinggi);
+            case 3:
+                break;
 
-        // menampilkan hasil
-        printf("Volume Tabung : %lf\n", hasil.volume);
-        printf("Luas Permukaan Tabung : %lf\n", hasil.luaspermukaan);
-        break;
+            case 4:
+                break;
 
-    case 2: // Bola
+            case 5: // Kerucut
+                printf("Input the radius of the cone: ");
+                radius = doubleValidate(0);
+                printf("Input the height of the cone: ");
+                height = doubleValidate(0);
+                printf("Input the slanted side of the cone: ");
+                slant = doubleValidate(0);
+                result = cone(radius, height, slant);
+                printf("Volume of the cone= %lf\n", result.volume);
+                printf("Surface area of the cone= %lf\n", result.surfaceArea);
+                break;
 
-        printf("Masukan Jari_Jari Bola: ");
-        jarijari = validasiDouble(0);
-        hasil = bola(jarijari);
-
-        // menampilkan hasil
-        printf("Volume Bola : %lf\n", hasil.volume);
-        printf("Luas Permukaan Bola : %lf\n", hasil.luaspermukaan);
-        break;
-
-    case 3: //
-        break;
-
-    case 4: //
-        break;
-
-    case 5: //
-        printf("Masukkan nilai jari-jari: ");
-        jarijari = validasiDouble(0);
-        printf("Masukkan nilai tinggi: ");
-        tinggi = validasiDouble(0);
-        printf("Masukkan nilai sisi miring: ");
-        sisimiring = validasiDouble(0);
-
-    
-        printf("Volume kerucut= %lf\n", hasil.volume);
-        printf("Luas permukaan kerucut= %lf\n", hasil.luaspermukaan);
-        break;
+            default:
+                printf("The input you entered is wrong!\nPlease re-enter(1-5)\n");
+        }
+        
+        printf("Do you want to run the program again? (1 for yes, 0 for no): ");
+        int repeat = numValidate(0, 1);
+        if (repeat == 0) {
+            break;
+        }
     }
+    
     return 0;
 }
