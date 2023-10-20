@@ -33,7 +33,7 @@ double doubleValidation(double minimum) // Number Validation.
     }
 }
 
-// Declare Triange Procedure
+// Declare Triangle Procedure
 void calculateAreaAndCircumferenceOfTriangle(double sideA, double sideB, double sideC)
 {
     double s = (sideA + sideB + sideC) / 2;                          // calculate half the circumference
@@ -55,16 +55,16 @@ void calculateAreaAndCircumferenceOfRhombus(double diagonal1, double diagonal2, 
     printf("Area of Rhombus : %.lf\n", area);                   // Process
     printf("Circumference of Rhombus : %.lf\n", circumference); // Process
 }
-// Deklarasi Prosedur Jajargenjang
-void hitungLuasDanKelilingJajarGenjang(double alas, double tinggi, double sisi)
+// Declare Parallelogram Procedure
+void calculateAreaAndCircumferenceOfParallelogram(double base, double height, double side)
 {
     double area, circumference;
 
-    area = alas * tinggi;
-    circumference = 2 * (alas + sisi);
+    area = base * height;
+    circumference = 2 * (base + side);
 
-    printf("Luas jajar genjang: %.2lf\n", area);
-    printf("Keliling jajar genjang: %.2lf\n", circumference);
+    printf("Area of Parallelogram: %.2lf\n", area);
+    printf("Circumference of Parallelogram: %.2lf\n", circumference);
 }
 
 // Deklrasi Prosedur Trapesium
@@ -93,13 +93,13 @@ int main()
     double sideA, sideB, sideC, diagonal1, diagonal2, side; // Triangle's and Rhombus
     double alas1, alas2, tinggiT, sisi1, sisi2;             // Punya Trapesium
     double radius, areaOfCircle, circumferenceOfCircle;     // Circle's
-    double alasJ, tinggiJ, sisiJ;                           // Punya Jajargenjang
+    double baseJ, heightJ, sideJ;                           // Parallelogram's
 
     // Input Operator
     printf("\n");
     printf("\t\t\t\tProgram to Calculate Area and Circumference of Two-Dimentional Figure\n");
     printf("Choose Program (1-5) : \n");
-    printf("\n 1. Triangle\n 2. Rhombus\n 3. Jajargenjang\n 4. Trapesium\n 5. Circle\n");
+    printf("\n 1. Triangle\n 2. Rhombus\n 3. Parallelogram\n 4. Trapesium\n 5. Circle\n");
     printf("\n\nYour Choice: ");
     program = numberValidation(1, 5);
 
@@ -127,16 +127,16 @@ int main()
         calculateAreaAndCircumferenceOfRhombus(diagonal1, diagonal2, side); // Calling procedure
         break;
 
-    case 3: // Jajargenjang //Punya Dea
-        printf("Masukkan panjang alas: ");
-        alasJ = doubleValidation(0);
-        printf("Masukkan tinggi: ");
-        tinggiJ = doubleValidation(0);
-        printf("Masukkan panjang sisi: ");
-        sisiJ = doubleValidation(0);
+    case 3: // Parallelogram // Dea's
+        printf("Enter the base of parallelogram: ");
+        baseJ = doubleValidation(0);
+        printf("Enter the height of parallelogram: ");
+        heightJ = doubleValidation(0);
+        printf("Enter the side length of parallelogram: ");
+        sideJ = doubleValidation(0);
 
-        // Memanggil prosedur untuk menghitung luas dan keliling jajar genjang
-        hitungLuasDanKelilingJajarGenjang(alasJ, tinggiJ, sisiJ);
+        // Calls procedures to calculate area and circumference of parallelogram
+        calculateAreaAndCircumferenceOfParallelogram(baseJ, heightJ, sideJ);
         break;
 
     case 4: // Trapesium //Punya Gusde
