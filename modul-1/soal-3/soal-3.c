@@ -82,38 +82,48 @@ int main()
         program = numValidate(1, 5);
 
         switch (program) {
-            case 1: // Tabung
-                printf("Input the radius of the tube: ");
-                radius = doubleValidate(0);
-                printf("Input the height of the tube: ");
-                height = doubleValidate(0);
-                result = tube(radius, height);
-                printf("Volume of the tube : %lf\n", result.volume);
-                printf("Surface area of the tube : %lf\n", result.surfaceArea);
+            case 1: // Tabung //Punya Linda
+
+                printf("Masukan Jari_Jari Tabung: ");
+                jarijari = validasiDouble(0);
+                printf("Masukan Tinggi Tabung: ");
+                tinggi = validasiDouble(0);
+        
+                hasil = tabung(jarijari, tinggi);
+        
+                // menampilkan hasil
+                printf("Volume Tabung : %lf\n", hasil.volume);
+                printf("Luas Permukaan Tabung : %lf\n", hasil.luaspermukaan);
                 break;
 
-            case 2: // Bola
+            case 2: // Sphere // Dewayu
                 printf("Input the radius of the sphere: ");
                 radius = doubleValidate(0);
+                
                 result = sphere(radius);
+
+                // showing the results
                 printf("Volume of the sphere : %lf\n", result.volume);
                 printf("Surface area of the sphere : %lf\n", result.surfaceArea);
                 break;
 
-            case 3:
+            case 3: // Limas Segiempat
                 break;
 
-            case 4:
+            case 4: // Prisma Segitiga
                 break;
 
-            case 5: // Kerucut
+            case 5: // Cone // Dewayu
                 printf("Input the radius of the cone: ");
                 radius = doubleValidate(0);
                 printf("Input the height of the cone: ");
                 height = doubleValidate(0);
                 printf("Input the slanted side of the cone: ");
                 slant = doubleValidate(0);
+                
                 result = cone(radius, height, slant);
+
+                // showing the results
                 printf("Volume of the cone= %lf\n", result.volume);
                 printf("Surface area of the cone= %lf\n", result.surfaceArea);
                 break;
