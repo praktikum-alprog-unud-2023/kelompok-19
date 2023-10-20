@@ -85,15 +85,15 @@ int main()
             case 1: // Tabung //Punya Linda
 
                 printf("Masukan Jari_Jari Tabung: ");
-                jarijari = validasiDouble(0);
+                radius = validasiDouble(0);
                 printf("Masukan Tinggi Tabung: ");
-                tinggi = validasiDouble(0);
+                height = validasiDouble(0);
         
-                hasil = tabung(jarijari, tinggi);
+                result = tube(radius, height);
         
-                // menampilkan hasil
-                printf("Volume Tabung : %lf\n", hasil.volume);
-                printf("Luas Permukaan Tabung : %lf\n", hasil.luaspermukaan);
+                // menampilkan result
+                printf("Volume Tabung : %lf\n", result.volume);
+                printf("Luas Permukaan Tabung : %lf\n", result.surfaceArea);
                 break;
 
             case 2: // Sphere // Dewayu
