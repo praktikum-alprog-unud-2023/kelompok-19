@@ -19,7 +19,7 @@ int numValidate(int minimum, int maximum)
             return valid;
         else
         {
-            printf("The input you entered is wrong!\nPlease re-enter(1-5): ");
+            printf("The input you entered is wrong!\nPlease re-enter: ");
         }
     } while (1);
 }
@@ -69,9 +69,10 @@ struct outcome cone(double radius, double height, double slant){
 int main()
 {
     int program;
+    int backTostart = 1;
     struct outcome result;
     double radius, height, slant;
-
+    
     while (1) {
         // Input Operator
         printf("\n");
@@ -85,9 +86,9 @@ int main()
             case 1: // Tube //Punya Linda
 
                 printf("Input the radius of tube: ");
-                radius = doubleValidation(0);
+                radius = doubleValidate(0);
                 printf("Input the height of tube: ");
-                height = doubleValidation(0);
+                height = doubleValidate(0);
         
                 result = tube(radius, height);
         
