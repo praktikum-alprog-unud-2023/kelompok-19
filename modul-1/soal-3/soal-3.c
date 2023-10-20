@@ -84,16 +84,16 @@ int main()
         switch (program) {
             case 1: // Tabung //Punya Linda
 
-                printf("Masukan Jari_Jari Tabung: ");
+                printf("Input the radius of tube: ");
                 radius = validasiDouble(0);
-                printf("Masukan Tinggi Tabung: ");
-                height = validasiDouble(0);
+                printf("Input the height of tube: ");
+                height = doubleValidation(0);
         
                 result = tube(radius, height);
         
                 // menampilkan result
-                printf("Volume Tabung : %lf\n", result.volume);
-                printf("Luas Permukaan Tabung : %lf\n", result.surfaceArea);
+                printf("Volume of The Tube : %lf\n", result.volume);
+                printf("surfaceArea of The Tube : %lf\n", result.surfaceArea);
                 break;
 
             case 2: // Sphere // Dewayu
