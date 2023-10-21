@@ -67,7 +67,7 @@ void calculateAreaAndCircumferenceOfParallelogram(double base, double height, do
     printf("Circumference of Parallelogram: %.2lf\n", circumference);
 }
 
-// Deklrasi Prosedur Trapesium
+// Declare Trapezoid Procedure
 void calculateAreaAndPerimeterofTrapezoid(double base1, double base2, double height, double side1, double side2)
 {
     double area, circumference;
