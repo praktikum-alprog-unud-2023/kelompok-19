@@ -35,7 +35,7 @@ double doubleValidate(double minimum)
             return valid;
         else
         {
-            printf("The input you entered is wrong!\nPlease re-enter(1-5): ");
+            printf("The input you entered is wrong!\nPlease re-enter: ");
         }
     } while (1);
 }
