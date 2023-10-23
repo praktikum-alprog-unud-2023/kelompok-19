@@ -67,7 +67,7 @@ void calculateAreaAndCircumferenceOfParallelogram(double base, double height, do
     printf("Circumference of Parallelogram: %.2lf\n", circumference);
 }
 
-// Deklrasi Prosedur Trapesium
+// Declare Trapezoid Procedure
 void calculateAreaAndPerimeterofTrapezoid(double base1, double base2, double height, double side1, double side2)
 {
     double area, circumference;
@@ -89,10 +89,10 @@ void calculateAreaAndCircumferenceOfCircle(double radius, double *area, double *
 
 int main()
 {
-    int program;
-    int backToStart = 1;                                    // "Int" untuk memilih operator dalam switch
+    int program;                                            // for switch
+    int backToStart = 1;                                    // for validation
     double sideA, sideB, sideC, diagonal1, diagonal2, side; // Triangle's and Rhombus
-    double base1, base2, height, side1, side2;             // Punya Trapesium
+    double base1, base2, height, side1, side2;              // Trapezoid's
     double radius, areaOfCircle, circumferenceOfCircle;     // Circle's
     double baseJ, heightJ, sideJ;                           // Parallelogram's
 
@@ -103,7 +103,7 @@ int main()
         printf("\n");
         printf("\t\t\t\tProgram to Calculate Area and Circumference of Two-Dimentional Figure\n");
         printf("Choose Program (1-5) : \n");
-        printf("\n 1. Triangle\n 2. Rhombus\n 3. Parallelogram\n 4. Trapesium\n 5. Circle\n");
+        printf("\n 1. Triangle\n 2. Rhombus\n 3. Parallelogram\n 4. Trapezoid\n 5. Circle\n");
         printf("\n\nYour Choice: ");
         program = numberValidation(1, 5);
 
@@ -143,7 +143,7 @@ int main()
             calculateAreaAndCircumferenceOfParallelogram(baseJ, heightJ, sideJ);
             break;
 
-        case 4: // Trapezoid //Punya Gusde
+        case 4: // Trapezoid //Gusde
             printf("Enter the length of the top base of the trapezoid: ");
             base1 = doubleValidation(0);
 
@@ -174,8 +174,8 @@ int main()
             printf("Circumference of Circle: %lf\n", circumferenceOfCircle);
             break;
 
-        default: // Validasi
-            printf("Pilihan tidak ada dalam list, silahkan restart");
+        default: // Validaation alternate
+            printf("Your choice is not on list, please restart!");
             break;
         }
         if (backToStart == 1)
