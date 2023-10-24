@@ -1,53 +1,98 @@
-//Punya Narto
 #include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
 #include <math.h>
 
-int main() {
-    char operator;
-    double bilangan1, bilangan2;
-   
-    printf("Praktikum ALPROG Kelompok 19\n"); // Pesan tambahan
-    printf("Masukkan operator (+, -, *, /, %): ");
-    scanf(" %c", &operator);
+void add(double num1, double num2) {
+    double result = num1 + num2;
+    printf("Hasil pertambahan: %.2lf\n", result);
+}
 
-    printf("Masukkan dua bilangan: ");
-    scanf("%lf %lf", &bilangan1, &bilangan2);
+void subtract(double num1, double num2) {
+    double result = num1 - num2;
+    printf("Hasil pengurangan: %.2lf\n", result);
+}
 
-    double hasil;
+void multiply(double num1, double num2) {
+    double result = num1 * num2;
+    printf("Hasil perkalian: %.2lf\n", result);
+}
 
-    switch (operator) {
-        case '+':
-            hasil = bilangan1 + bilangan2;
-            break;
-        case '-':
-            hasil = bilangan1 - bilangan2;
-            break;
-        case '*':
-            hasil = bilangan1 * bilangan2;
-            break;
-        case '/':
-            if (bilangan2 != 0) {
-                hasil = bilangan1 / bilangan2;
-            } else {
-                printf("Kesalahan: Tidak dapat membagi dengan nol.\n");
-                return 1; // Keluar dari program dengan kode kesalahan
-            }
-            break;
-        case '%':
-            if (bilangan2 != 0) {
-                hasil = fmod(bilangan1, bilangan2);
-            } else {
-                printf("Kesalahan: Tidak dapat menghitung modulus dengan nol.\n");
-                return 1; // Keluar dari program dengan kode kesalahan
-            }
-            break;
-        default:
-            printf("WOIIII you ada buat Kesalahan : Operator tidak valid. Jangan ngawur, masukin data dan operasi  sesuai petunjuk,Jangan sampai salah  :)\n");
-            return 1; // Keluar dari program dengan kode kesalahan
+void divide(double num1, double num2) {
+    if(num2 != 0) {
+        double result = num1 / num2;
+        printf("Hasil pembagian: %.2lf\n", result);
+    } else {
+        printf("Tidak dapat membagi dengan nol.\n");
     }
+}
 
-    printf("Hasil kalkulasi: %.2lf\n", hasil);
+void modulus(double num1, double num2) {
+    if(num2 != 0) {
+        double result = fmod(num1, num2);
+        printf("Hasil modulus: %.2lf\n", result);
+    } else {
+        printf("Tidak dapat melakukan modulus dengan nol.\n");
+    }
+}
+
+int main() {
+    double num1, num2;
+    char operator, cont;
+
+    do {
+        while(1) {
+            printf("Masukkan operator (+, -, *, /, %%): ");
+            operator = getchar(); // Gets operator
+
+            if (operator == '+' || operator == '-' || operator == '*' || operator == '/' || operator == '%') {
+                break;
+            } else {
+                printf("Operator tidak valid.\n");
+                continue;
+            }
+        }
+
+        printf("Masukkan angka pertama: ");
+        scanf("%lf", &num1);
+
+        printf("Masukkan angka kedua: ");
+        scanf("%lf", &num2);
+
+        switch(operator) {
+            case '+':
+                add(num1, num2);
+                break;
+            case '-':
+                subtract(num1, num2);
+                break;
+            case '*':
+                multiply(num1, num2);
+                break;
+            case '/':
+                divide(num1, num2);
+                break;
+            case '%':
+                modulus(num1, num2);
+                break;
+        }
+
+        printf("Apakah ingin mengulangi proses? (yes/no): ");
+        scanf(" %c", &cont);
+
+        // Convert input to lowercase
+        cont = tolower(cont);
+
+        // If input is not 'y' or 'n', ask for input again
+        while(cont != 'y' && cont != 'n') {
+            printf("Masukkan input yang benar (yes/no): ");
+            scanf(" %c", &cont);
+
+            // Convert input to lowercase
+            cont = tolower(cont);
+        }
+
+    } while(cont == 'y');
 
     return 0;
 }
-
