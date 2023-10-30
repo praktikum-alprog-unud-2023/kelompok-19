@@ -1,96 +1,69 @@
 #include <stdio.h>
-#include <stdlib.h>  // For the exit function
+#include <math.h>
+#include <stdbool.h>
+
+bool is_operator_valid(char operator) {
+    return operator == '+' || operator == '-' || operator == '*' || operator == '/' || operator == '%';
+}
 
 int main() {
-    int operator;
-    double num1, num2, result;
-    char again;
+    char operator;
+    double bilangan1, bilangan2;
+    char ulangi;
 
     do {
-        // Requesting an operator and performing validation
-        while (1) {
-            printf("Enter the operator (1 for addition(+), 2 for subtraction(-), 3 for multiplication(*), 4 for division(/), 5 for modulo): ");
-            if (scanf("%d", &operator) == 1 && operator >= 1 && operator <= 5) {
+        printf("Praktikum ALPROG Kelompok 19\n");
+
+        do {
+            printf("Masukkan operator (+, -, *, /, %%): ");
+            scanf(" %c", &operator);
+
+            if (!is_operator_valid(operator)) {
+                printf("Kesalahan: Operator tidak valid. Masukkan operator yang benar.\n");
+            }
+        } while (!is_operator_valid(operator));
+
+        printf("Masukkan dua bilangan: \n");
+        scanf("%lf %lf", &bilangan1, &bilangan2);
+
+        double hasil;
+
+        switch (operator) {
+            case '+':
+                hasil = bilangan1 + bilangan2;
                 break;
-            }
-            printf("Invalid operator. Please enter an operator from 1 to 5.\n");
-            // Clearing the stdin buffer
-            while (getchar() != '\n');
-        }
-
-        // Requesting num1 and performing validation
-        while (1) {
-            printf("Enter num1: ");
-            if (scanf("%lf", &num1) == 1) {
+            case '-':
+                hasil = bilangan1 - bilangan2;
                 break;
-            }
-            printf("Invalid input for num1. Please enter a number.\n");
-            // Clearing the stdin buffer
-            while (getchar() != '\n');
-        }
-
-        // Requesting num2 and performing validation
-        while (1) {
-            printf("Enter num2: ");
-            if (scanf("%lf", &num2) == 1) {
+            case '*':
+                hasil = bilangan1 * bilangan2;
                 break;
-            }
-            printf("Invalid input for num2. Please enter a number.\n");
-            // Clearing the stdin buffer
-            while (getchar() != '\n');
-        }
-
-        // Validating division or modulo by zero
-        if ((operator == 4 || operator == 5) && num2 == 0) {
-            printf("Cannot perform division or modulo by zero.\n");
-        } else {
-            // Using a switch-case structure to calculate the result
-            switch (operator) {
-                case 1:
-                    result = num1 + num2;
-                    break;
-
-                case 2:
-                    result = num1 - num2;
-                    break;
-
-                case 3:
-                    result = num1 * num2;
-                    break;
-
-                case 4:
-                    if (num2 != 0) {
-                        result = num1 / num2;
-                    } else {
-                        printf("Cannot perform division by zero.\n");
-                    }
-                    break;
-
-                case 5:
-                    if (num2 != 0) {
-                        result = (int)num1 % (int)num2;
-                    } else {
-                        printf("Cannot perform modulo operation by zero.\n");
-                    }
-                    break;
-            }
-
-            // Displaying the result with two decimal places
-            printf("Result: %.2lf\n", result);
-        }
-
-        while (1) {
-            printf("Do you want to calculate again? (y/n): ");
-            scanf(" %c", &again);  // Extra space before %c to handle newline
-            if (again == 'y' || again == 'Y' || again == 'n' || again == 'N') {
+            case '/':
+                if (bilangan2 != 0) {
+                    hasil = bilangan1 / bilangan2;
+                } else {
+                    printf("Kesalahan: Tidak dapat membagi dengan nol.\n");
+                    return 1;
+                }
                 break;
-            }
-            printf("Invalid input. Please enter 'y' or 'n'.\n");
-            // Clearing the stdin buffer
-            while (getchar() != '\n');
+            case '%':
+                if (bilangan2 != 0) {
+                    hasil = fmod(bilangan1, bilangan2);
+                } else {
+                    printf("Kesalahan: Tidak dapat menghitung modulus dengan nol.\n");
+                    return 1;
+                }
+                break;
         }
-        
-    } while (again == 'y' || again == 'Y');
+
+        printf("Hasil kalkulasi: %.2lf\n", hasil);
+
+        do {
+            printf("Apakah Anda ingin mengulang? (1.yes/0.no): ");
+            scanf(" %c", &ulangi);
+        } while (ulangi != '1' && ulangi != '0');
+
+    } while (ulangi == '1');
 
     return 0;
 }
