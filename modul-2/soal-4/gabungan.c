@@ -1,5 +1,37 @@
 #include <stdio.h>
 
+int numValidate(int minimum)
+{
+    char buff[255], invalid;
+    int valid;
+    do {
+        scanf("%[^\n]", buff);
+        getchar();
+        if (sscanf(buff, "%d%c", &valid, &invalid) == 1 && valid >= minimum )
+            return valid;
+        else
+        {
+            printf("Please enter a non-negative number\nPlease re-enter: ");
+        }
+    } while (1);
+}
+
+double doubleValidate(double minimum)
+{
+    char buff[255], invalid;
+    double valid;
+    do {
+        scanf("%[^\n]", buff);
+        getchar();
+        if (sscanf(buff, "%lf%c", &valid, &invalid) == 1 && valid >= minimum)
+            return valid;
+        else
+        {
+            printf("Please enter a non-negative number\nPlease re-enter: ");
+        }
+    } while (1);
+}
+
 int fibonacciRecursive(int n) {
    if (n == 0) {
       return 0;
@@ -9,6 +41,7 @@ int fibonacciRecursive(int n) {
       return (fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2));
    }
 }
+
 int fibonacciIterative(int n) {
   int t1 = 0, t2 = 1;
   
@@ -30,7 +63,7 @@ int main() {
    int n;
 	
    printf("Enter the number of terms: ");
-   scanf("%d", &n);
+   n=numValidate(1);
    
    if (n < 0) {
       printf("Please enter a non-negative number.\n");
