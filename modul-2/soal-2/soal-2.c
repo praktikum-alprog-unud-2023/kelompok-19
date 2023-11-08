@@ -92,7 +92,7 @@ int main()
             }
 
             // Calculate final grade
-            finalGrade = (attendance * 0.05) + ((assignment1 + assignment2 + assignment3) * 0.2) + (quiz * 0.15) + (midTerm * 0.3) + (finalExam * 0.3);
+            finalGrade = ((double)((attendance * (100/15)) * 0.05)) + (((assignment1 + assignment2 + assignment3)/3) * 0.2) + (quiz * 0.15) + (midTerm * 0.3) + (finalExam * 0.3);
 
             // Determine letter grade
             if (finalGrade >= 80)
