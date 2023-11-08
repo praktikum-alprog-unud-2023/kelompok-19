@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 
 int main() {
     int attendance, assignment1, assignment2, assignment3, quiz, midTerm, finalExam;
     double finalGrade;
-    char letterGrade;
+    char letterGrade[] = "ab";
     char input[100];
 
     int validInput = 0;
@@ -74,29 +75,31 @@ int main() {
 
         // Determine letter grade
         if (finalGrade >= 80) {
-            letterGrade = 'A';
+            sprintf(letterGrade, "A ");
         } else if (finalGrade >= 75) {
-            letterGrade = 'B+';
+            sprintf(letterGrade, "B+");
         } else if (finalGrade >= 70) {
-            letterGrade = 'B';
+            sprintf(letterGrade, "B ");
         } else if (finalGrade >= 65) {
-            letterGrade = 'C+';
+            sprintf(letterGrade, "C+");
         } else if (finalGrade >= 60) {
-            letterGrade = 'C';
+            sprintf(letterGrade, "C ");
         } else if (finalGrade >= 55) {
-            letterGrade = 'D+';
+            sprintf(letterGrade, "D+");
         } else if (finalGrade >= 50) {
-            letterGrade = 'D';
+            sprintf(letterGrade, "D ");
         } else {
-            letterGrade = 'E';
+            sprintf(letterGrade, "E ");
         }
 
         validInput = 1;
     }
 
     printf("\n\t\t\tFinal Grade: %.2f\n", finalGrade);
-    printf("\t\t\t  Letter Grade: %c\n\n\n", letterGrade);
+    printf("\t\t\t  Letter Grade: %s", letterGrade);
+    // for(int i = 0; i <= 1; i++){
+    //     printf("%c", letterGrade[i]);
+    // }
 
     return 0;
 }
-
