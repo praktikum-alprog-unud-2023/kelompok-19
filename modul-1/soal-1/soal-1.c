@@ -2,68 +2,68 @@
 #include <math.h>
 #include <stdbool.h>
 
-bool is_operator_valid(char operator) {
+bool isOperatorValid(char operator) {
     return operator == '+' || operator == '-' || operator == '*' || operator == '/' || operator == '%';
 }
 
 int main() {
     char operator;
-    double bilangan1, bilangan2;
-    char ulangi;
+    double number1, number2;
+    char repeat;
 
     do {
-        printf("Praktikum ALPROG Kelompok 19\n");
+        printf("ALPROG Group 19 Practice\n");
 
         do {
-            printf("Masukkan operator (+, -, *, /, %%): ");
+            printf("Enter operator (+, -, *, /, %%): ");
             scanf(" %c", &operator);
 
-            if (!is_operator_valid(operator)) {
-                printf("Kesalahan: Operator tidak valid. Masukkan operator yang benar.\n");
+            if (!isOperatorValid(operator)) {
+                printf("Error: Invalid operator. Please enter a valid operator.\n");
             }
-        } while (!is_operator_valid(operator));
+        } while (!isOperatorValid(operator));
 
-        printf("Masukkan dua bilangan: \n");
-        scanf("%lf %lf", &bilangan1, &bilangan2);
+        printf("Enter two numbers: \n");
+        scanf("%lf %lf", &number1, &number2);
 
-        double hasil;
+        double result;
 
         switch (operator) {
             case '+':
-                hasil = bilangan1 + bilangan2;
+                result = number1 + number2;
                 break;
             case '-':
-                hasil = bilangan1 - bilangan2;
+                result = number1 - number2;
                 break;
             case '*':
-                hasil = bilangan1 * bilangan2;
+                result = number1 * number2;
                 break;
             case '/':
-                if (bilangan2 != 0) {
-                    hasil = bilangan1 / bilangan2;
+                if (number2 != 0) {
+                    result = number1 / number2;
                 } else {
-                    printf("Kesalahan: Tidak dapat membagi dengan nol.\n");
+                    printf("Error: Cannot divide by zero.\n");
                     return 1;
                 }
                 break;
             case '%':
-                if (bilangan2 != 0) {
-                    hasil = fmod(bilangan1, bilangan2);
+                if (number2 != 0) {
+                    result = fmod(number1, number2);
                 } else {
-                    printf("Kesalahan: Tidak dapat menghitung modulus dengan nol.\n");
+                    printf("Error: Cannot calculate modulus with zero.\n");
                     return 1;
                 }
                 break;
         }
 
-        printf("Hasil kalkulasi: %.2lf\n", hasil);
+        printf("Calculation result: %.2lf\n", result);
 
         do {
-            printf("Apakah Anda ingin mengulang? (1.yes/0.no): ");
-            scanf(" %c", &ulangi);
-        } while (ulangi != '1' && ulangi != '0');
+            printf("Do you want to repeat? (1.yes/0.no): ");
+            scanf(" %c", &repeat);
+        } while (repeat != '1' && repeat != '0');
 
-    } while (ulangi == '1');
+    } while (repeat == '1');
 
     return 0;
 }
