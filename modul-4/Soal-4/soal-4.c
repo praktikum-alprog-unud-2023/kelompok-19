@@ -3,378 +3,473 @@
 #include <string.h>
 #include <conio.h>
 
-struct mahasiswa{
-	char no_indukm[255];
-	char nama[255];
-}mahasiswa;
+struct Student
+{
+    char registrationNumber[255];
+    char name[255];
+} student;
 
 void identity();
-void menambahkan();
-void mencari();
-char keluar();
-char validasi(char *masukan);
-char validasi_isi(char *masukan);
-char validasi_no_indukm(char *masukan);
-char valid_nim();
-int periksa_pil1();
-int periksa_pil2();
+void addStudent();
+void searchStudent();
+char exitProgram();
+char validate(char *input);
+char validateContent(char *input);
+char validateRegistrationNumber(char *input);
+char validateNIM();
+int checkChoice1();
+int checkChoice2();
 
+char registrationNumber[255], name[255];
 
-char no_indukm[255],nama[255];
-
-
-void identity(){
+void identity()
+{
 }
 
-
-int periksa_pil1(){
+int checkChoice1()
+{
     int input;
-    while(1){
-        input=valid_input();
-        if(input>=1 && input<=3){
+    while (1)
+    {
+        input = validInput();
+        if (input >= 1 && input <= 3)
+        {
             return input;
         }
         printf("\t\t\t\t===================================\n");
-        printf("\t\t\t\tInput tidak valid, mohon ulangi : ");
+        printf("\t\t\t\tInvalid input, please try again: ");
     }
 }
 
-
-int periksa_pil2(){
+int checkChoice2()
+{
     int input;
-    while(1){
-        input=valid_input();
-        if(input>=1 && input<=2){
+    while (1)
+    {
+        input = validInput();
+        if (input >= 1 && input <= 2)
+        {
             return input;
         }
         printf("\t\t\t===================================\n");
-        printf("\t\t\tInput tidak valid, mohon ulangi : ");
+        printf("\t\t\tInvalid input, please try again: ");
     }
 }
 
-
-char keluar(){
-    char masukan[100];
-    while(1){
-        int i=0;
-        int salah;
-        scanf("%[^\n]",&masukan);
+char exitProgram()
+{
+    char input[100];
+    while (1)
+    {
+        int i = 0;
+        int wrongInput;
+        scanf("%[^\n]", &input);
         fflush(stdin);
-        if(masukan [i+1] =='\0'){
-            if(masukan[0]=='y'  || masukan[0]=='Y' && masukan[1]=='\0'){
-                return masukan[0];
-            }else if (masukan[0]=='n'  || masukan [0]=='N' && masukan[1]=='\0'){
-                return masukan[0];
-            }else{
-                salah=1;
+        if (input[i + 1] == '\0')
+        {
+            if ((input[0] == 'y' || input[0] == 'Y') && input[1] == '\0')
+            {
+                return input[0];
+            }
+            else if ((input[0] == 'n' || input[0] == 'N') && input[1] == '\0')
+            {
+                return input[0];
+            }
+            else
+            {
+                wrongInput = 1;
             }
         }
-        salah=1;
-        if(salah==1){
+        wrongInput = 1;
+        if (wrongInput == 1)
+        {
             printf("\t\t\t===================================\n");
-            printf("\t\t\tInput tidak valid, mohon ulangi : ");
-
+            printf("\t\t\tInvalid input, please try again: ");
         }
     }
 }
 
-
-char validasi_isi(char *masukan){
-    int i,salah;
-    i=0;
-    salah=0;
-    scanf("%[^\n]", masukan);
+char validateContent(char *input)
+{
+    int i, wrongInput;
+    i = 0;
+    wrongInput = 0;
+    scanf("%[^\n]", input);
     fflush(stdin);
-    while(masukan[i] != '\0'){
-        if(masukan[i] == '.'){
-            salah = 1;
-            masukan[i] = '\0';
-        }else if(masukan[i] == ' '){
-            if(masukan[0]==' '|| masukan[i+1]=='\0'|| masukan[0]=='\0'){
-                salah = 1;
-                masukan[i] = '\0';
-            }else{
-                i++;
-            }
-        }else if(masukan[i]>='a' && masukan[i]<='z' || masukan[i] >= 'A' && masukan[0] <= 'Z'){
-            if(masukan[i]>='a' && masukan[i]<='z'|| masukan[i]>='A' && masukan[i]<='Z'){
-                i++;
-            }else{
-                salah=1;
-                masukan[i]='\0';
-            }
-        }else if(masukan[i]>='0'&& masukan[i]<='9'){
-            salah=1;
-            masukan[i]='\0';
-        }else{
-            salah = 1;
-            masukan[i] = '\0';
+    while (input[i] != '\0')
+    {
+        if (input[i] == '.')
+        {
+            wrongInput = 1;
+            input[i] = '\0';
         }
-    }if(masukan[0]=='\0'){
-        salah=1;
-        masukan[i]='\0';
-    }if(salah == 1){
+        else if (input[i] == ' ')
+        {
+            if (input[0] == ' ' || input[i + 1] == '\0' || input[0] == '\0')
+            {
+                wrongInput = 1;
+                input[i] = '\0';
+            }
+            else
+            {
+                i++;
+            }
+        }
+        else if ((input[i] >= 'a' && input[i] <= 'z') || (input[i] >= 'A' && input[i] <= 'Z'))
+        {
+            if ((input[i] >= 'a' && input[i] <= 'z') || (input[i] >= 'A' && input[i] <= 'Z'))
+            {
+                i++;
+            }
+            else
+            {
+                wrongInput = 1;
+                input[i] = '\0';
+            }
+        }
+        else if (input[i] >= '0' && input[i] <= '9')
+        {
+            wrongInput = 1;
+            input[i] = '\0';
+        }
+        else
+        {
+            wrongInput = 1;
+            input[i] = '\0';
+        }
+    }
+    if (input[0] == '\0')
+    {
+        wrongInput = 1;
+        input[i] = '\0';
+    }
+    if (wrongInput == 1)
+    {
         printf("\t\t\t===================================\n");
-        printf("\t\t\tInput tidak valid, mohon ulangi : ");
+        printf("\t\t\tInvalid input, please try again: ");
         return 0;
-    }else{
-        return masukan;
+    }
+    else
+    {
+        return *input;
     }
 }
 
-
-char validasi(char *masukan){
-    while(1){
-        if(validasi_isi(masukan)){
+char validate(char *input)
+{
+    while (1)
+    {
+        if (validateContent(input))
+        {
             fflush(stdin);
-            return masukan;
+            return *input;
         }
     }
 }
 
-
-char validasi_no_indukm(char *no_indukms){
-
-    while(1){
-        if(valid_nim(no_indukms)){
+char validateRegistrationNumber(char *registrationNumbers)
+{
+    while (1)
+    {
+        if (validateNIM(registrationNumbers))
+        {
             fflush(stdin);
-            return no_indukms;
+            return *registrationNumbers;
         }
     }
 }
 
-
-char valid_nim(char *masukan){
-    int i,salah;
-    i=0;
-    salah=0;
-    scanf("%[^\n]", masukan);
+char validateNIM(char *input)
+{
+    int i, wrongInput;
+    i = 0;
+    wrongInput = 0;
+    scanf("%[^\n]", input);
     fflush(stdin);
-    while(masukan[i] != '\0'){
-        if(masukan[i] == '.'){
-            salah = 1;
-            masukan[i] = '\0';
-        }else if(masukan[i] == ' '){
-            if(masukan[0]==' '|| masukan[i+1]=='\0'){
-                salah = 1;
-                masukan[i] = '\0';
-            }else{
+    while (input[i] != '\0')
+    {
+        if (input[i] == '.')
+        {
+            wrongInput = 1;
+            input[i] = '\0';
+        }
+        else if (input[i] == ' ')
+        {
+            if (input[0] == ' ' || input[i + 1] == '\0')
+            {
+                wrongInput = 1;
+                input[i] = '\0';
+            }
+            else
+            {
                 i++;
             }
-        }else if(masukan[i]>='0' && masukan[i]<='9'){
+        }
+        else if (input[i] >= '0' && input[i] <= '9')
+        {
             i++;
-        }else{
-            salah = 1;
-            masukan[i] = '\0';
         }
-    }if(masukan[0]=='\0'){
-        salah=1;
-        masukan[i]='\0';
-    }if(salah == 1){
+        else
+        {
+            wrongInput = 1;
+            input[i] = '\0';
+        }
+    }
+    if (input[0] == '\0')
+    {
+        wrongInput = 1;
+        input[i] = '\0';
+    }
+    if (wrongInput == 1)
+    {
         printf("\t\t\t===================================\n");
-        printf("\t\t\tInput tidak valid, mohon ulangi : ");
+        printf("\t\t\tInvalid input, please try again: ");
         return 0;
-    }else{
-        return masukan;
+    }
+    else
+    {
+        return *input;
     }
 }
 
-
-int valid_input(){
-    char masukan[100];
+int validInput()
+{
+    char input[100];
     int i = 0;
-    int belakang = 0;
-    int isi_depan = 0;
-    int isi_belakang = 0;
+    int back = 0;
+    int frontContent = 0;
+    int backContent = 0;
     int status = 0;
-    int titik = 0;
-    int salah = 0;
+    int dot = 0;
+    int wrongInput = 0;
     int minus = 0;
-    int hasil;
+    int result;
 
-    scanf("%[^\n]", &masukan);
+    scanf("%[^\n]", &input);
     fflush(stdin);
-    while(masukan[i] != '\0'){
-        if(masukan[i] == '.'){
-            salah = 1;
-            masukan[i] = '\0';
-        }else if(masukan[i] == ' '){
-            salah = 1;
-            masukan[i] = '\0';
-        }else if(masukan[i]>='0' && masukan[i]<='9' ||  masukan[0] == '-'){
-            if(masukan[i] == '-'){
-                minus=minus + 1;
-                if(minus >1 || masukan[i+1]=='\0'){
-                    salah=1;
-                    masukan[i]='\0';
+    while (input[i] != '\0')
+    {
+        if (input[i] == '.')
+        {
+            wrongInput = 1;
+            input[i] = '\0';
+        }
+        else if (input[i] == ' ')
+        {
+            wrongInput = 1;
+            input[i] = '\0';
+        }
+        else if ((input[i] >= '0' && input[i] <= '9') || input[0] == '-')
+        {
+            if (input[i] == '-')
+            {
+                minus++;
+                if (minus > 1 || input[i + 1] == '\0')
+                {
+                    wrongInput = 1;
+                    input[i] = '\0';
                 }
-            }else if(masukan[i]>='0' && masukan[i]<='9'){
-                if(masukan[0]=='0'){
-                    salah=1;
-                    masukan[i]='\0';
-                }else{
-                    isi_depan = (isi_depan * 10) + (masukan[i] - 48);
+            }
+            else if (input[i] >= '0' && input[i] <= '9')
+            {
+                if (input[0] == '0')
+                {
+                    wrongInput = 1;
+                    input[i] = '\0';
                 }
-            }else{
-                salah=1;
-                masukan[i]='\0';
+                else
+                {
+                    frontContent = (frontContent * 10) + (input[i] - 48);
+                }
+            }
+            else
+            {
+                wrongInput = 1;
+                input[i] = '\0';
             }
             i++;
-        }else{
-            salah = 1;
-            masukan[i] = '\0';
         }
-
+        else
+        {
+            wrongInput = 1;
+            input[i] = '\0';
+        }
     }
-    if(masukan[0]=='\0'){
-        salah=1;
+    if (input[0] == '\0')
+    {
+        wrongInput = 1;
     }
-    hasil = isi_depan;
-    if(minus == 1){
-        hasil = hasil - (hasil * 2);
+    result = frontContent;
+    if (minus == 1)
+    {
+        result = result - (result * 2);
     }
-    if(salah == 1){
+    if (wrongInput == 1)
+    {
         printf("\t\t\t===================================\n");
-        printf("\t\t\tInput tidak valid, mohon ulangi : ");
-    }else{
-        return hasil;
+        printf("\t\t\tInvalid input, please try again: ");
     }
-return valid_input();
+    else
+    {
+        return result;
+    }
+    return validInput();
 }
 
-
-void menambahkan(){
-    int cek,pilih,d;
-    char no_indukm[10];
-    FILE *cekdata;
-    FILE * input;
-    do{
+void addStudent()
+{
+    int check, choice, d;
+    char registrationNumber[10];
+    FILE *checkData;
+    FILE *input;
+    do
+    {
         fflush(stdin);
         system("cls");
-        printf("\t\t\tInput NIM dan Nama Mahasiswa\n\n");
-        printf("\t\t\tInput Nomor Induk Mahasiswa : ");
-        validasi_no_indukm(&mahasiswa.no_indukm);
+        printf("\t\t\tInput Student Registration Number and Name\n\n");
+        printf("\t\t\tInput Student Registration Number : ");
+        validateRegistrationNumber(&student.registrationNumber);
 
         fflush(stdin);
-        printf("\t\t\tInput Nama Mahasiswa : ");
-        validasi(&mahasiswa.nama);
+        printf("\t\t\tInput Student Name : ");
+        validate(&student.name);
 
-        cek=0;
+        check = 0;
         fflush(stdin);
-        cekdata = fopen("sim.txt","r");
-        if(cekdata == NULL){
-            printf("\t\t\tFile txt Tidak Tersedia\n");
-        }else{
-            while(!feof(cekdata)){
-                fscanf(cekdata,"%s\n#%s#\n",&no_indukm,&nama);
-                if(strcmp(mahasiswa.no_indukm,no_indukm)==0){
+        checkData = fopen("sim.txt", "r");
+        if (checkData == NULL)
+        {
+            printf("\t\t\tFile txt Not Available\n");
+        }
+        else
+        {
+            while (!feof(checkData))
+            {
+                fscanf(checkData, "%s\n#%s#\n", &registrationNumber, &name);
+                if (strcmp(student.registrationNumber, registrationNumber) == 0)
+                {
                     fflush(stdin);
-                    printf("\t\t\tNIM yang di-input Sudah Tersedia di dalam File txt!\n");
-                    cek=1;
+                    printf("\t\t\tRegistration Number already exists in the txt file!\n");
+                    check = 1;
                 }
             }
-            fclose(cekdata);
+            fclose(checkData);
         }
         fflush(stdin);
-        if(cek !=1){
-            input=fopen("sim.txt","a");
-            fprintf(input,"%s\n#%s#\n",mahasiswa.no_indukm,mahasiswa.nama);
+        if (check != 1)
+        {
+            input = fopen("sim.txt", "a");
+            fprintf(input, "%s\n#%s#\n", student.registrationNumber, student.name);
             fclose(input);
-            cek=4;
+            check = 4;
         }
-        if(cek==4){
-            printf("\n\n\t\t\tSukses menambahkan data\n");
+        if (check == 4)
+        {
+            printf("\n\n\t\t\tData added successfully\n");
         }
-        printf("\n\t\t\t 1 Untuk mengulang menambahkan data\n");
-        printf("\t\t\t 2 Untuk keluar dari menu input data\n\n");
-        printf("\t\t\t Apakah kamu ingin mengulang atau keluar? : ");
-        pilih=periksa_pil2();
-        }while(pilih==1);
+        printf("\n\t\t\t 1 To add data again\n");
+        printf("\t\t\t 2 To exit from the data input menu\n\n");
+        printf("\t\t\t Do you want to repeat or exit? : ");
+        choice = checkChoice2();
+    } while (choice == 1);
 }
 
-
-void mencari(){
-    char no_indukm[10];
-    int pilih;
-    int a,cek;
-    do{
+void searchStudent()
+{
+    char registrationNumber[10];
+    int choice;
+    int a, check;
+    do
+    {
         fflush(stdin);
         system("cls");
-        printf("\t\t\tInput Nomor Induk Mahasiswa (NIM)");
-        cek=0;
+        printf("\t\t\tInput Student Registration Number (NIM)");
+        check = 0;
         fflush(stdin);
-        printf("\n\n\t\t\tMasukan NIM Anda :");
-        validasi_no_indukm(&no_indukm);
+        printf("\n\n\t\t\tEnter your NIM :");
+        validateRegistrationNumber(&registrationNumber);
 
-        FILE *cekdata;
+        FILE *checkData;
 
-        cekdata=fopen("sim.txt","r");
+        checkData = fopen("sim.txt", "r");
 
-        if(cekdata==NULL){
-            printf("file txt tidak ada!");
-        }else{
-            while(!feof(cekdata)){
-                fscanf(cekdata,"%s\n# %[^#] #\n",&mahasiswa.no_indukm,&mahasiswa.nama);
-                if(strcmp(mahasiswa.no_indukm,no_indukm)==0){
+        if (checkData == NULL)
+        {
+            printf("txt file does not exist!");
+        }
+        else
+        {
+            while (!feof(checkData))
+            {
+                fscanf(checkData, "%s\n# %[^#] #\n", &student.registrationNumber, &student.name);
+                if (strcmp(student.registrationNumber, registrationNumber) == 0)
+                {
                     fflush(stdin);
-                    printf("\n\n\t\t\t Data Mahasiswa      \n\n");
-                    printf("\t\t\t Nomor Induk Mahasiswa  : %s",mahasiswa.no_indukm);
+                    printf("\n\n\t\t\t Student Data      \n\n");
+                    printf("\t\t\t Student Registration Number  : %s", student.registrationNumber);
                     printf("\n");
-                    printf("\t\t\t Nama Mahasiswa: %s",mahasiswa.nama);
+                    printf("\t\t\t Student Name: %s", student.name);
                     printf("\n\n");
-                    cek=1;
+                    check = 1;
                 }
             }
-            fclose(cekdata);
+            fclose(checkData);
         }
-        if(cek !=1){
-            printf("\n\n\t\t\t Tidak dapat menemukan Nomor Induk Mahasiswa yang telah di-input\n\n");
+        if (check != 1)
+        {
+            printf("\n\n\t\t\t Cannot find the input Student Registration Number\n\n");
         }
-        printf("\t\t\t 1 Untuk mengulang mencari data\n");
-        printf("\t\t\t 2 Untuk keluar dari menu input data\n\n");
-        printf("\t\t\t Apakah kamu ingin mengulang atau keluar? : ");
-        pilih=periksa_pil2();
-    }while(pilih==1);
+        printf("\t\t\t 1 To search data again\n");
+        printf("\t\t\t 2 To exit from the data input menu\n\n");
+        printf("\t\t\t Do you want to repeat or exit? : ");
+        choice = checkChoice2();
+    } while (choice == 1);
 }
 
-
-int main(){
-    char cek;
-    int pilih;
+int main()
+{
+    char check;
+    int choice;
     identity();
-    do{
+    do
+    {
         fflush(stdin);
         system("cls");
         printf("\t\t\t\t==============================================================================\n");
-		printf("\t\t\t\t||                         Sistem Informasi Mahasiswa                       ||\n");
-		printf("\t\t\t\t||                                           	                            ||\n");
-		printf("\t\t\t\t||          1. Menambahkan  Data                                            ||\n");
-		printf("\t\t\t\t||          2. Mencari Data                                                 ||\n");
-		printf("\t\t\t\t||          3. Keluar                         	                            ||\n");
-		printf("\t\t\t\t||                                           	                            ||\n");
-		printf("\t\t\t\t==============================================================================\n\n");
-		printf("\t\t\tInput pilihan : ");
-        pilih=periksa_pil1();
+        printf("\t\t\t\t||                         Student Information System                      ||\n");
+        printf("\t\t\t\t||                                           	                            ||\n");
+        printf("\t\t\t\t||          1. Add Data                                                    ||\n");
+        printf("\t\t\t\t||          2. Search Data                                                 ||\n");
+        printf("\t\t\t\t||          3. Exit                         	                            ||\n");
+        printf("\t\t\t\t||                                           	                            ||\n");
+        printf("\t\t\t\t==============================================================================\n\n");
+        printf("\t\t\tInput choice : ");
+        choice = checkChoice1();
         fflush(stdin);
-        if(pilih==1){
-            menambahkan();
+        if (choice == 1)
+        {
+            addStudent();
             system("cls");
-        }else if(pilih==2){
-            mencari();
+        }
+        else if (choice == 2)
+        {
+            searchStudent();
             system("cls");
-        }else{
+        }
+        else
+        {
             printf("\t\t\t=====================================================\n");
-            printf("\t\t\t     Terima kasih telah menggunakan program ini.    \n");
+            printf("\t\t\t     Thank you for using this program.    \n");
             printf("\t\t\t=====================================================");
             return 0;
         }
-        printf("\n\t\t\t Y untuk mengulang program\n");
-        printf("\t\t\t N untuk keluar dari program\n\n");
-        printf("\t\t\t Apakah kamu ingin mengulang? : ");
-        cek=keluar();
-        }while(cek=='y'|| cek=='Y');
-        printf("\t\t\t=====================================================\n");
-        printf("\t\t\t     Terima kasih telah menggunakan program ini.    \n");
-        printf("\t\t\t=====================================================");
-return 0;
+        printf("\n\t\t\t Y to repeat the program\n");
+        printf("\t\t\t N to exit the program\n\n");
+        printf("\t\t\t Do you want to repeat? : ");
+        check = exitProgram();
+    } while (check == 'y' || check == 'Y');
+    printf("\t\t\t=====================================================\n");
+    printf("\t\t\t     Thank you for using this program.    \n");
+    printf("\t\t\t=====================================================");
+    return 0;
 }
